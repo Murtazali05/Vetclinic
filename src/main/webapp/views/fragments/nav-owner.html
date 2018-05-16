@@ -1,0 +1,14 @@
+<nav th:fragment="nav-owner (fio, photo, role)" class="left-menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <p th:text="${fio}">Муртазали Рабадангаджиев <span th:text="${role}"></span></p>
+    <hr />
+    <div class="ava">
+        <img th:src="@{/images/{ava}(ava=${photo})}" alt="Аватарка" /><br/>
+        <a href="#">Поменять аватарку</a>
+    </div>
+    <ul class="menu-person">
+        <li><a href="/doctor">Общая информация</a></li>
+        <li><a href="/doctor/animal/diagnosis">Поставить диагноз</a></li>
+        <li><a href="/doctor/animal/cure">Вылечить животное</a></li>
+        <li><a href="/doctor/animals">Список животных</a></li>
+    </ul>
+</nav>

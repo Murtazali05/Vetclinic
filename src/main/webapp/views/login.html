@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+
+<header sec:authorize="!isAuthenticated()">
+    <header th:replace="fragments/header :: header"></header>
+</header>
+<header sec:authorize="isAuthenticated()">
+    <header th:replace="fragments/header :: header(fio=${user.fio})"></header>
+</header>
+
+<section class="main_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+
+                    <div th:if="${error != null}" class="error" th:text="${error}"></div>
+
+                    <h3 class="head-content">Login Page</h3>
+
+                    <form action="/login" method="post" class="form-login form-horizontal">
+                        <div class="form-group">
+                            <label for="mail" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-12">
+                                <input type="email" name="email" class="form-control" id="mail" placeholder="Email" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pas" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-12">
+                                <input type="password" name="password" class="form-control" id="pas" placeholder="Password" required="required" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" /> Запомнить меня
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-12">
+                                <button type="submit" class="btn btn-info">Sing in</button>
+                                <div class="link-login clearfix">
+                                    <a href="/registration" class="link-registration">Регистрация</a>
+                                    <a href="#" class="link-forgot">Забыли пароль</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="/libs/OwlCarousel/dist/owl.carousel.min.js"></script>
+<script src="/js/common.js"></script>
+
+</body>
+</html>

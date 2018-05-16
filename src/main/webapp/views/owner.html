@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org/"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+
+<header sec:authorize="!isAuthenticated()">
+    <header th:replace="fragments/header :: header"></header>
+</header>
+<header sec:authorize="isAuthenticated()">
+    <header th:replace="fragments/header :: header(fio=${user.fio})"></header>
+</header>
+
+<section class="main_content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <nav th:replace="fragments/nav-person :: nav-person (fio=${user.fio}, photo=${user.photo})"></nav>
+
+            </div>
+
+            <div class="col-md-8">
+                <div class="content">
+                    <h3 class="head-content">Ваш профиль</h3>
+
+                    <ul sec:authorize="isAuthenticated()">
+                    <li>Name: <span th:text="${user.fio}"></span></li>
+                    <li>Birthday: <span th:text="${user.birthday}"></span></li>
+                    <li>Email: <span th:text="${user.email}"></span></li>
+                    </ul>
+
+                    <ul sec:authorize="!isAuthenticated()">
+                    <li><span>Вы не авторизованы!</span></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="/libs/OwlCarousel/dist/owl.carousel.min.js"></script>
+<script src="/js/common.js"></script>
+
+</body>
+</html>

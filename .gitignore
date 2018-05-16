@@ -1,0 +1,6 @@
+$ cat .gitignore
+
+*.iml
+/target
+/.idea
+/src/main/webapp/resources/libs

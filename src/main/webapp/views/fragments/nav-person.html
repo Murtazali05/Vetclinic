@@ -1,0 +1,13 @@
+<nav th:fragment="nav-person (fio, photo)" class="left-menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <p th:text="${fio}">Муртазали Рабадангаджиев</p>
+    <hr />
+    <div class="ava">
+        <img th:src="@{/images/{ava}(ava=${photo})}" alt="Аватарка" /><br/>
+        <a href="#">Поменять аватарку</a>
+    </div>
+    <ul class="menu-person">
+        <li><a href="/owner">Общая информация</a></li>
+        <li><a href="/owner/animal/edit">Добавить животное</a></li>
+        <li><a href="/owner/animals">Список животных</a></li>
+    </ul>
+</nav>
